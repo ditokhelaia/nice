@@ -1,6 +1,7 @@
 
 .message-body{
-    word-wrap: break-word
+    word-wrap: break-word;
+    max-width: 69vw;
 }
 #messages{
     height: 75vh;
