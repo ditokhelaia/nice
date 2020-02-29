@@ -2,3 +2,12 @@
 .message-body{
     word-wrap: break-word
 }
+#messages{
+    height: 75vh;
+    overflow: scroll;
+}
+
+body{
+    height: 100vh;
+    overflow: hidden;
+}

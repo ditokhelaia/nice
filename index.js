@@ -43,7 +43,7 @@ io.on('connection', function(socket){
         waiting_list.push(socket.id);
     }
     console.log("Active Users = "+num_users+",Waiting list size="+waiting_list.length);
-    io.to(socket.id).emit("active users",num_users);
+    io.sockets.emit("active users",num_users);
 
     socket.on('chat message', function(data){
         // var msg = emoji.parse(data.msg, '/emoji/images');
@@ -62,14 +62,14 @@ io.on('connection', function(socket){
     socket.on('disconnect', function () {
         if(socket.partner!=null){
             socket.broadcast.to(socket.partner).emit("typing", false);
-               socket.broadcast.to(socket.partner).emit("disconnecting now", 'Your Partner has disconnected . Refresh page to chat again');
+               socket.broadcast.to(socket.partner).emit("disconnecting now", 'პარტნიორმა გათიშა . დააჭირე შემდეგს');
         }
         else{
             waiting_list.splice(0,1);
         }
         num_users--;
         console.log("Active Users = "+num_users+",Waiting List="+waiting_list.length);
-        io.to(socket.id).emit("active users",num_users);
+        io.sockets.emit("active users",num_users);
     });
 
     socket.on('typing',function (data) {

@@ -126,3 +126,6 @@ $('#next').click(function() {
 $('#m').on('keyup',function(){
     isTyping();
 });
+$('#next').on('click',function(){
+    location.reload();
+});
