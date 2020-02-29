@@ -18,10 +18,10 @@
 			<div class="columns is-centered">
 				<div class="column">
 					<div id="bodyDiv">
-						<div style="display:flex">
-							<label class="button is-success">Online:</label>
+						<div style="display:flex; margin-bottom:25px;">
+							<label class="button is-success">აქტიური:</label>
 							<button id="online" type="button" class="button is-success">0</button>
-							<button id="next" style="margin-left:auto" class="button is-primary">Next</button>
+							<button id="next" style="margin-left:auto" class="button is-primary">შემდეგი</button>
 						</div>
 						
 						<div id="outerdiv">	
@@ -34,13 +34,13 @@
 									<form id='msgform' onsubmit="return submitForm()">
 										<div class="field has-addons ">
 											<div class="control" style="width:100%">
-												<input class="input is-primary" type="text" id="m" autocomplete="off" placeholder="Wait for partner to join"/>
+												<input class="input is-primary" type="text" id="m" autocomplete="off" placeholder="დაელოდე პარტნიორს"/>
 											</div>
 											<div class="control">
 												<button id="submitButton" class="button"> <i class="fas fa-paper-plane"></i></button>
 											</div>
 										</div>	
-										<label id="istyping" style="visibility: hidden;">Partner is typing...</label>
+										<label id="istyping" style="visibility: hidden;">პარტნიორი წერს...</label>
 									</form>
 								</div>
 							</div>

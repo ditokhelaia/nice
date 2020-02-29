@@ -17,7 +17,7 @@ $('#m').css("pointer-events","none");
 $('#m').attr("disabled",true);
 $('form button').css("pointer-events","none");
 $('form button').attr('disabled',true);
-$('#messages').append('<div class="notification is-warning is-light"> Try refreshing if you are not connected to anyone within a minute.   </div>');
+$('#messages').append('<div class="notification is-warning is-light"> დააჭირე შემდეგს თუ კავშირი არ დამყარდა </div>');
 
 function timeoutFunction() {
     socket.emit('typing', false);
@@ -92,7 +92,7 @@ socket.on('disconnecting now', function (msg) {
 
 socket.on('partner', function (partner_data) {
     if(partner_id==null){
-        $('#messages').append("<div class='notification is-primary'>"+'Connected to '+partner_data.username+"</div>");
+        $('#messages').append("<div class='notification is-primary'>"+'კავშირი არის '+"</div>");
         $('#partnername').html(partner_data.username);
         $('#partnerimg').attr("src",partner_data.avatar);
         $('#m').css("pointer-events","auto");
@@ -102,8 +102,7 @@ socket.on('partner', function (partner_data) {
         partner_id = partner_data.id;
         partner_username=partner_data.username;
         partner_avatar=partner_data.avatar;
-        $('#m').attr("placeholder","Type to send a message");
-        $('div.emojionearea-editor').attr("placeholder","Type to send a message");
+        $('#m').attr("placeholder","დაწერე შეტყობინება");
         socket.emit('partner',{target:partner_id,
             data:{id:socket.id,
                 username:socket.username,
