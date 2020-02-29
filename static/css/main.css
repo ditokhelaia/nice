@@ -24,5 +24,7 @@
 }
 body{
     height: 100vh;
-    overflow: hidden;
+}
+#outerdiv{
+    margin-top:25px;
 }
