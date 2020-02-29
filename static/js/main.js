@@ -74,6 +74,10 @@ socket.on('chat message partner', function (msg) {
 
 });
 
+socket.on('active users',function(users){
+    $('#online').html(users);
+});
+
 socket.on('disconnecting now', function (msg) {
     $('#messages').append('<div class="notification is-danger">'+msg+"</div>");
     $("#messages").scrollTop($("#messages")[0].scrollHeight);
@@ -118,4 +122,8 @@ $('#next').click(function() {
             console.log(data)
         }
     });
+});
+
+$('#m').on('keyup',function(){
+    isTyping();
 });

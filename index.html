@@ -3,7 +3,7 @@
 <head>
     <title>Title </title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
-
+	<link rel="stylesheet" href="static/bulma/css/main.css">
 	<link rel="stylesheet" href="static/bulma/css/bulma.min.css">
 	<script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 	
@@ -16,41 +16,19 @@
 					
 			</ul>
 			<div class="columns is-centered">
-				<div class="column is-half">
+				<div class="column">
 					<div id="bodyDiv">
 						<div style="display:flex">
+							<label class="button is-success">Online:</label>
+							<button id="online" type="button" class="button is-success"></button>
 							<button id="next" style="margin-left:auto" class="button is-primary">Next</button>
 						</div>
 						
-						<div id="outerdiv">
+						<div id="outerdiv">	
 							<div id="messages"></div>
-							<div id="partnerdiv" class="col-sm-2" style="display:none;">
-								<span id="partnerinfo">
-									<div class="align-left">
-										<h3>You're talking to:</h3>
-										<br>
-										<h3 id="partnername"></h3>
-										<br>
-									</div>
-									
-									<figure class="image is-128x128">
-										<img id="partnerimg" src="">
-									</figure>
-								</span>
-							</div>
-							<div id="mydiv" class="col-sm-2" style="display:none;">
-								<span id="myinfo">
-									<div class="align-right">
-										<h3>You are:</h3>
-										<h3 id="myname"></h3>
-										<br>
-									</div>
-									<figure class="image is-128x128">
-										<img id="myimg" src="">
-									</figure>
-									
-								</span>
-							</div>
+							
+							
+							
 							<div id="messagediv" style="margin-top:25px">
 								<div id="newMessage">
 									<form id='msgform' onsubmit="return submitForm()">
