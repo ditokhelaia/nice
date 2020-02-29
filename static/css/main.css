@@ -1,12 +1,12 @@
 
 .message-body{
     word-wrap: break-word;
-    max-width: 69vw;
 }
 #messages{
     height: 75vh;
     overflow-y: scroll;
     padding-right: 5px;
+    max-width: 69vw;
 }
 #messages::-webkit-scrollbar-track
 {
