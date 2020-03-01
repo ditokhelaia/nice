@@ -1,4 +1,9 @@
 
+@font-face {
+    font-family: tahoma;
+    src: url(../fonts/bpg_tahoma_glaho.ttf);
+}
+
 .message-body{
     word-wrap: break-word;
 }
@@ -9,7 +14,7 @@
 }
 #messages::-webkit-scrollbar-track
 {
-	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	--webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
 	background-color: #F5F5F5;
 }
 #messages::-webkit-scrollbar
@@ -22,8 +27,9 @@
 {
 	background-color: #00d1b2;
 }
-body{
+body:lang(ka){
     height: 100vh;
+    font-family:tahoma;
 }
 #outerdiv{
     margin-top:25px;
