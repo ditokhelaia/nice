@@ -28,3 +28,8 @@ body{
 #outerdiv{
     margin-top:25px;
 }
+.main-ad{
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+}
