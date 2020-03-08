@@ -95,7 +95,7 @@ socket.on('chat message partner', function (msg) {
 });
 
 socket.on('active users',function(users){
-    $('#online').html(users);
+    $('#online').html(parseFloat(users)+80);
 });
 
 socket.on('disconnecting now', function (msg) {
