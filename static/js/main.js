@@ -56,6 +56,16 @@ socket.on('init',function (data) {
 
 socket.on('chat message mine',function(msg){
     var output_msg = msg;
+    var sp = output_msg.split(' ');
+    var msgs = [];
+    for(var i=0;i<sp.length; i++){
+        var temp = sp[i];
+        if(checkURL(sp[i])){
+            temp = '<img src="'+ sp[i]+'"';
+        }
+        msgs.push(temp);
+    } 
+    output_msg = msgs.join(' ');
     var newData = '<article style="display:none" class="me message is-info"><div class="message-body" style="text-align:right;border-right-width: 4px;border-left-width: 0;">'+output_msg+'</div></article>';
     $(newData).appendTo($('#messages')).slideDown(speed=200,callback = function(){
         $("#messages").scrollTop($("#messages")[0].scrollHeight);
@@ -66,7 +76,17 @@ socket.on('chat message mine',function(msg){
 
 socket.on('chat message partner', function (msg) {
     audio.play();
-    var output_msg = msg;        
+    var output_msg = msg;
+    var sp = output_msg.split(' ');
+    var msgs = [];
+    for(var i=0;i<sp.length; i++){
+        var temp = sp[i];
+        if(checkURL(sp[i])){
+            temp = '<img src="'+ sp[i]+'"';
+        }
+        msgs.push(temp);
+    } 
+    output_msg = msgs.join(' ');
     var newData = '<article class="partner message is-primary" style="display:none"> <div class="message-body">'+output_msg+'</div>';
     $(newData).appendTo($('#messages')).slideDown(speed=200,callback = function(){
         $("#messages").scrollTop($("#messages")[0].scrollHeight);
@@ -129,3 +149,60 @@ $('#m').on('keyup',function(){
 $('#next').on('click',function(){
     location.reload();
 });
+
+function giphy(query){
+    let url = `http://api.giphy.com/v1/gifs/search?q=`+query+`&api_key=bRnyTb5XRC3bH74ZzI5JizPHBohrYPJH`;
+    var xhr = new XMLHttpRequest();
+    
+    xhr.onload = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            var response = JSON.parse(xhr.responseText);
+            var data = response.data;
+            _html = '';
+            for (var i=0;i<data.length;i++) {
+                _html+='<img src="'+data[i].images.downsized.url+'"/>';
+            }
+            $('#gif').html(_html);
+            $('#gif img').on('click',function(){
+                var msg = $(this).attr('src');
+                console.log(msg);
+                socket.emit('chat message', {msg: msg, target: partner_id});
+                $('#gif').html('');
+                return false;
+            });
+        }
+    }
+    xhr.open('GET', url, true); 
+    xhr.send();
+    
+}
+
+
+
+$('#checkboxid').on('click',function(ev){
+    if($(this).is(':checked')) {
+        console.log('checkked')
+        document.getElementById("msgform").onkeypress = function(e) {
+            var key = e.charCode || e.keyCode || 0;     
+            if ($('#checkboxid').is(':checked') && key == 13) {
+              e.preventDefault();
+              return false;
+            }
+          }
+        $('#m').on('keyup',function(){
+            let msg = $('#m').val();
+            if(msg.length > 3){
+                giphy(msg);
+            } 
+        });
+        $('#submitButton').attr("disabled",true);
+    }else{
+        
+        $('#gif').html('');
+        $('#submitButton').attr("disabled",false);
+    }
+})
+
+function checkURL(url) {
+    return(url.match(/\.(jpeg|jpg|gif|png)$/) != null);
+}

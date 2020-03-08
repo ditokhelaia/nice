@@ -45,10 +45,15 @@
 							
 							<div id="messagediv" style="margin-top:25px">
 								<div id="newMessage">
+									<div class="control gif" id="gif"></div>
 									<form id='msgform' onsubmit="return submitForm()">
 										<div class="field has-addons ">
-											<div class="control" style="width:100%">
+											<div class="control has-icons-left" style="width:100%">
 												<input class="input is-primary" type="text" id="m" autocomplete="off" placeholder="დაელოდე პარტნიორს"/>
+												<label id="gifspan" class="icon is-medium is-left">
+													<input id="checkboxid" type="checkbox" class="css-checkbox">
+													<div class="img"></div>
+												</label>
 											</div>
 											<div class="control">
 												<button id="submitButton" class="button"> <i class="fas fa-paper-plane"></i></button>
