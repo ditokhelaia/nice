@@ -168,6 +168,7 @@ function giphy(query){
                 console.log(msg);
                 socket.emit('chat message', {msg: msg, target: partner_id});
                 $('#gif').html('');
+				$('#m').val('');
                 return false;
             });
         }
