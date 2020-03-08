@@ -151,7 +151,7 @@ $('#next').on('click',function(){
 });
 
 function giphy(query){
-    let url = `http://api.giphy.com/v1/gifs/search?q=`+query+`&api_key=bRnyTb5XRC3bH74ZzI5JizPHBohrYPJH`;
+    let url = `https://api.giphy.com/v1/gifs/search?q=`+query+`&api_key=bRnyTb5XRC3bH74ZzI5JizPHBohrYPJH`;
     var xhr = new XMLHttpRequest();
     
     xhr.onload = function () {
