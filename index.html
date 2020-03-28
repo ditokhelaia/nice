@@ -23,6 +23,7 @@
 </head>
 
 <body>
+	<div id="imgTest"></div>
 	<section class="section">
 		<div class="container">
 			<ul class="lightrope">
@@ -48,11 +49,15 @@
 									<div class="control gif" id="gif"></div>
 									<form id='msgform' onsubmit="return submitForm()">
 										<div class="field has-addons ">
-											<div class="control has-icons-left" style="width:100%">
+											<div class="control has-icons-left has-icons-right" style="width:100%">
 												<input class="input is-primary" type="text" id="m" autocomplete="off" placeholder="დაელოდე პარტნიორს"/>
 												<label id="gifspan" class="icon is-medium is-left">
 													<input id="checkboxid" type="checkbox" class="css-checkbox">
 													<div class="img"></div>
+												</label>
+												<label id="gifspan" class="icon is-medium is-right">
+													<input id="imgupload" type="file" class="css-checkbox" disabled="true">
+													<div class="uploadfile"></div>
 												</label>
 											</div>
 											<div class="control">

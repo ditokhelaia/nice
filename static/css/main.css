@@ -8,7 +8,7 @@
     word-wrap: break-word;
 }
 #messages{
-    height: 75vh;
+    height: 65vh;
     overflow-y: scroll;
     padding-right: 5px;
 }
@@ -78,6 +78,17 @@ body:lang(ka){
 
 #gifspan .img {
     background-image: url(/static/img/gif.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 32px;
+    width: 32px;
+    background-size: cover;
+    opacity: 0.4;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+#gifspan .uploadfile {
+    background-image: url(/static/img/upload.png);
     background-repeat: no-repeat;
     background-position: center;
     height: 32px;

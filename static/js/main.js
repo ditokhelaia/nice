@@ -105,8 +105,10 @@ socket.on('disconnecting now', function (msg) {
     $('#partnerimg').attr("src"," ");
     $('#m').css("pointer-events","none");
     $('#m').attr("disabled",true);
+    $('#imgupload').attr("disabled",true);
     $('form button').css("pointer-events","none");
     $('form button').attr("disabled",true);
+    $('#imgupload').attr("disabled",true);
     $('#m').attr("placeholder","");
 });
 
@@ -117,6 +119,7 @@ socket.on('partner', function (partner_data) {
         $('#partnerimg').attr("src",partner_data.avatar);
         $('#m').css("pointer-events","auto");
         $('#m').attr("disabled",false);
+        $('#imgupload').attr("disabled",false);
         $('form button').css("pointer-events","auto");
         $('form button').attr("disabled",false);
         partner_id = partner_data.id;
@@ -182,7 +185,7 @@ function giphy(query){
 
 $('#checkboxid').on('click',function(ev){
     if($(this).is(':checked')) {
-        console.log('checkked')
+        $('#m').attr('placeholder','მოძებნე გიფი');
         document.getElementById("msgform").onkeypress = function(e) {
             var key = e.charCode || e.keyCode || 0;     
             if ($('#checkboxid').is(':checked') && key == 13) {
@@ -198,7 +201,7 @@ $('#checkboxid').on('click',function(ev){
         });
         $('#submitButton').attr("disabled",true);
     }else{
-        
+        $('#m').attr('placeholder','დაწერე შეტყობინება');
         $('#gif').html('');
         $('#submitButton').attr("disabled",false);
     }
@@ -207,3 +210,51 @@ $('#checkboxid').on('click',function(ev){
 function checkURL(url) {
     return(url.match(/\.(jpeg|jpg|gif|png)$/) != null);
 }
+
+
+
+function encodeImageFileAsURL() {
+
+    var filesSelected = document.getElementById("imgupload").files;
+    if (filesSelected.length > 0) {
+        var fileToLoad = filesSelected[0];
+  
+        var fileReader = new FileReader();
+  
+        fileReader.onload = function(fileLoadedEvent) {
+          var srcData = fileLoadedEvent.target.result; // <--- data: base64
+  
+          var newImage = document.createElement('img');
+          newImage.src = srcData;
+  
+          return document.getElementById("imgTest").innerHTML;
+        }
+        fileReader.readAsDataURL(fileToLoad);
+      }
+    //return false;
+}
+
+$('#imgupload').on('change',function(){
+    var filesSelected = document.getElementById("imgupload").files;
+    if (filesSelected.length > 0) {
+        var fileToLoad = filesSelected[0];
+  
+        var fileReader = new FileReader();
+  
+        fileReader.onload = function(fileLoadedEvent) {
+          var srcData = fileLoadedEvent.target.result;
+  
+          var newImage = document.createElement('img');
+          newImage.src = srcData;
+
+          let myimg = newImage.outerHTML;
+          if(myimg){
+                socket.emit('chat message', {msg: myimg, target: partner_id});
+            }
+            console.log("Converted Base64 version is " + myimg);
+
+        }
+        fileReader.readAsDataURL(fileToLoad);
+      }
+    
+});
