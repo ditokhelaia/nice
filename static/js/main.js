@@ -168,7 +168,6 @@ function giphy(query){
             $('#gif').html(_html);
             $('#gif img').on('click',function(){
                 var msg = $(this).attr('src');
-                console.log(msg);
                 socket.emit('chat message', {msg: msg, target: partner_id});
                 $('#gif').html('');
 				$('#m').val('');
@@ -195,7 +194,7 @@ $('#checkboxid').on('click',function(ev){
           }
         $('#m').on('keyup',function(){
             let msg = $('#m').val();
-            if(msg.length > 3){
+            if(msg.length > 3 && $('#checkboxid').is(':checked') ){
                 giphy(msg);
             } 
         });
@@ -251,7 +250,7 @@ $('#imgupload').on('change',function(){
           if(myimg){
                 socket.emit('chat message', {msg: myimg, target: partner_id});
             }
-            console.log("Converted Base64 version is " + myimg);
+           
 
         }
         fileReader.readAsDataURL(fileToLoad);
